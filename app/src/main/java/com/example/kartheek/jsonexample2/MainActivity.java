@@ -2,8 +2,8 @@ package com.example.kartheek.jsonexample2;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,9 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         new AsyncOperation().execute();
     }
-    class AsyncOperation extends AsyncTask<Void,Void,Void>{
+
+    private class AsyncOperation extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -86,7 +85,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-           progressDialog.dismiss();
+            if (progressDialog != null) {
+                progressDialog.dismiss();
+            }
             ArrayAdapter arrayAdapter=new ArrayAdapter(MainActivity.this,android.R.layout.simple_dropdown_item_1line,values);
             listView.setAdapter(arrayAdapter);
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
